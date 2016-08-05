@@ -1,0 +1,22 @@
+//include the library code
+#include <LiquidCrystal.h
+
+//initialize the library with the numbers of the interface pins on the arduino
+LiquidCrystal lcd ();
+
+void setup () {
+//set up the LCD's number of columns and rows 
+lcd.begin(16,2);
+//the pin holes above the lcd screen is columns 1-16 and on the right side is rows 1&2 
+}
+
+void loop () {
+lcd.setCursor(0,0);
+//Print a message to the lcd
+lcd.print("Playing 44 Mhz")
+//set the cursor to column 0 line 2
+//(note:line 2 is the second row, since the first row is 0):
+lcd.setCursor(0,2);
+//print the numbr of seconds since reset:
+lcd.print(mills()/1000);
+}
