@@ -1,5 +1,5 @@
 //include the library code
-#include <LiquidCrystal.h
+#include <LiquidCrystal.h>
 
 //initialize the library with the numbers of the interface pins on the arduino
 LiquidCrystal lcd ();
