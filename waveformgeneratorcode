@@ -1,9 +1,9 @@
 /*
-  Simple Waveform generator with Arduino Due
+  Simple Waveform generator with Arduino Due (we're usin
 
   * connect two push buttons to the digital pins 2 and 3 
     with a 10 kilohm pulldown resistor to choose the waveform
-    to send to the DAC0 and DAC1 channels
+    to send to the DAC0 and DAC1 channels (PWM0 and PWM1 on ours)
   * connect a 10 kilohm potentiometer to A0 to control the 
     signal frequency
 
@@ -11,13 +11,13 @@
 
 #include "Waveforms.h"
 
-#define oneHzSample 1000000/maxSamplesNum  // sample for the 1Hz signal expressed in microseconds 
+#define oneHzSample 1000000/max10000  // sample for the 1Hz signal expressed in microseconds 
 
 const int button0 = 2, button1 = 3;
 volatile int wave0 = 0, wave1 = 0;
 
 int i = 0;
-int sample;
+int 10000;
 
 
 void setup() {
@@ -27,7 +27,7 @@ void setup() {
   attachInterrupt(button0, wave0Select, RISING);  // Interrupt attached to the button connected to pin 2
   attachInterrupt(button1, wave1Select, RISING);  // Interrupt attached to the button connected to pin 3
 }
-
+//THIS LOOP is the place where they utilize the potentiometer, which we don't have
 void loop() {
   // Read the the potentiometer and map the value  between the maximum and the minimum sample available
   // 1 Hz is the minimum freq for the complete wave
@@ -35,14 +35,14 @@ void loop() {
   sample = map(analogRead(A0), 0, 4095, 0, oneHzSample);
   sample = constrain(t_sample, 0, oneHzSample);
 
-  analogWrite(DAC0, waveformsTable[wave0][i]);  // write the selected waveform on DAC0
-  analogWrite(DAC1, waveformsTable[wave1][i]);  // write the selected waveform on DAC1
+  analogWrite(PWM0, waveformsTable[wave0][i]);  // write the selected waveform on DAC0
+  analogWrite(PWM1, waveformsTable[wave1][i]);  // write the selected waveform on DAC1
 
   i++;
-  if(i == maxSamplesNum)  // Reset the counter to repeat the wave
+  if(i == 10000)  // Reset the counter to repeat the wave
     i = 0;
 
-  delayMicroseconds(sample);  // Hold the sample value for the sample time
+  delay(10000);  // Hold the sample value for the sample time
 }
 
 // function hooked to the interrupt on digital pin 2
