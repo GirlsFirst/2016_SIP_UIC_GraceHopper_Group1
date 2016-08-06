@@ -1,0 +1,48 @@
+/*
+	1209 Hz	1336 Hz	1477 Hz	1633 Hz
+697 Hz	1	2	3	A
+770 Hz	4	5	6	B
+852 Hz	7	8	9	C
+941 Hz	*	0	#	D
+*/
+#include <Tone.h>
+
+Tone RowTone, ColumnTone;
+const int RowTonePin = 13;
+const int ColumnTonePin = 12;
+const int ToneDuration = 100;  //  Play each tone 100 mSec.
+
+void setup() {
+  RowTone.begin(RowTonePin);
+  ColumnTone.begin(ColumnTonePin);
+}
+
+void loop() {
+    DTMF("8675309");
+   delay(1000);
+}
+
+void DTMF(char * keys) {
+    char key;
+    while (key = *keys++) {
+         switch (key) {
+         case '0':
+               RowTone.play(941, ToneDuration);
+               ColumnTone.play(1336, ToneDuration);
+                break;
+
+         case '1':
+               RowTone.play(697, ToneDuration);
+               ColumnTone.play(1209, ToneDuration);
+                break;
+
+         case '2':
+.
+.
+.
+       } // end switch
+       while (RowTone.playing() || ColumnTone.playing()) {
+            // Do Nothing 
+       }
+   } // end while
+}
