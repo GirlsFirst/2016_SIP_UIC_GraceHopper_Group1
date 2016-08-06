@@ -46,3 +46,12 @@ void DTMF(char * keys) {
        }
    } // end while
 }
+/***** 
+tone1.play(NOTE_C4);
+tone2.play(NOTE_A4);
+delay(noteDuration);
+tone1.stop();
+tone2.stop();
+
+// we stilll have to set the delay on them and put them in functions 
+***////
