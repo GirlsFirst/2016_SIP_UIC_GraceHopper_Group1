@@ -60,4 +60,29 @@ void setup() {
 
   // put your setup code here, to run once:
   pinMode(5, INPUT);
+  
+  void loop() {
+  // Increment our time counter every loop.
+  timeAroundLoop = timeAroundLoop + timeAdditionValue;
+  for (int i = 0; i < howManyLeds; i++)
+  {
+    // Each LED fades fater or slower than each other - multiply time by speed.
+    tempSinVal = timeAroundLoop*currentFadeAmount[i];
+
+    // This gives us a sinewave value of the adjusted time.  Values from -1 to 1.
+    tempSinVal = sin(tempSinVal);
+
+    // Absolute the sine wave (no negatives) to give a bouncing ball style wave.
+    tempSinVal = abs(tempSinVal);
+
+    // Do 1-value, to turn the bouncing ball upside down.
+    // It now looks like a hanging garland, just touching the ground.
+    tempSinVal = 1-tempSinVal;
+
+    // Set the brightness to this value, multiplied by our max brightness.
+    // The scale now goes from 0-255 instead of 0-1.
+    currentBrightness[i] = tempSinVal * maxBrightness;
+    // Write this value to the pin.
+    analogWrite(usedPins[i], currentBrightness[i]);
+  }
 
