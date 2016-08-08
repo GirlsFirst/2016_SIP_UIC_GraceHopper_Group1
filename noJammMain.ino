@@ -40,6 +40,24 @@ ISR(TIMER1_OVF_vect)
 }
 
 void setup() {
+  // usedPins is our master destination list of pins.
+  for (int i=0; i < howManyLeds; i++)
+  {
+    // Fill my new array with the available PWM pins.
+    usedPins[i] = pwmPins[i];
+  }
+ // currentFadeAmount is our increment/decrement to our currentBrightness val.
+  for (int i = 0; i < howManyLeds; i++)
+  {
+    // Set the fading speed to be somewhat randomized.
+    currentFadeAmount[i] = random(0.0,15.0);
+  }
+ // Prepare the pins as outputs.  (This may not be needed, but it doesn't hurt.)
+  for (int i = 0; i < howManyLeds; i ++)
+  {
+    pinMode(usedPins[i], OUTPUT);
+  }
+
   // put your setup code here, to run once:
   pinMode(5, INPUT);
   //Timer 1 will be set up as a counter
