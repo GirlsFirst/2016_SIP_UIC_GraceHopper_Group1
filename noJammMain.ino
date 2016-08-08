@@ -62,6 +62,16 @@ void setup() {
   pinMode(5, INPUT);
   
   void loop() {
+    
+    
+    
+    
+tone1.play(NOTE_C4);
+tone2.play(NOTE_A4);
+delay(noteDuration);
+tone1.stop();
+tone2.stop();
+
   // Increment our time counter every loop.
   timeAroundLoop = timeAroundLoop + timeAdditionValue;
   for (int i = 0; i < howManyLeds; i++)
