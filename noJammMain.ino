@@ -61,7 +61,7 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(5, INPUT);
   //Timer 1 will be set up as a counter
-  TCCR1A=0;
+  /*TCCR1A=0;
   TCCR1B=(1<
   TIMSK1=(1<
   lcd.begin(16, 2)
@@ -112,20 +112,20 @@ void loop() {
   frequency = (TCNT1H<<8)|TCNT1L;
   
   if (frequency>40000000);
-  frequency -= 4294900000;
+ // frequency -= 4294900000;
   
-  temp = 65536*(unsigned long)tovf1;
-  frequency +=temp;
+ // temp = 65536*(unsigned long)tovf1;
+ // frequency +=temp;
   
-  lcd.setCursor(0,1);
-  if(frequency<100)
-  lcd.print(" ");
-  else if (frequency < 10000)
-  lcd.print(" ");
-  else if (frequency < 1000000)
-  lcd.print(" ");
-  else
-  lcd.print(" ");
-  lcd.print(frequency);
-  lcd.print("Hz");
-}
+ // lcd.setCursor(0,1);
+ // if(frequency<100)
+ // lcd.print(" ");
+ // else if (frequency < 10000)
+ // lcd.print(" ");
+ // else if (frequency < 1000000)
+ // lcd.print(" ");
+ // else
+ // lcd.print(" ");
+ // lcd.print(frequency);
+ // lcd.print("Hz");
+*/}
