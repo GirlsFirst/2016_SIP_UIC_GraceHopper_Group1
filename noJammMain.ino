@@ -30,7 +30,7 @@ int currentBrightness[howManyLeds];
 float timeAroundLoop;
 // Number we add to our timeAroundLoop counter.  Make this bigger for faster pulses.
 float timeAdditionValue = 0.005;
-float tempSinVal;
+//float tempSinVal;
 
 
 
