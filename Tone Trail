@@ -54,4 +54,17 @@ tone1.stop();
 tone2.stop();
 
 // we stilll have to set the delay on them and put them in functions 
-***////
+***//// 
+/** 
+int BUZZ1=
+int BUZZ2= 
+
+
+void setup(){
+serial.begin(9600);
+pinMode(BUZZ1, OUTPUT);
+pinMode(BUZZ2, OUTPUT);
+
+
+}
+void 
