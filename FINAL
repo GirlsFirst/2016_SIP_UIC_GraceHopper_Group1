@@ -149,6 +149,45 @@ if (button==HIGH){
   delay(3000); 
     // print the number of seconds since reset:
   lcd.print("NOW cancelling out 500 HZ");
+  
+  
+         val0 = analogRead(analog0Pin);    // read the input pin for button
+       Serial.println(val0);             // debug value
+      
+      if (val0 >= threshold)                // 
+      
+      { 
+       for(Value5 = 0 ; Value5 <= 255; Value5+=5) // fade in (from min to max) Led 1
+       { 
+         analogWrite(Pin5, Value5);           // sets the value (range from 0 to 255) 
+         delay(30);                            // waits for 30 milli seconds to see the dimming effect 
+       } 
+       for(Value5 = 255; Value5 >=0; Value5-=5)   // fade out (from max to min) 
+       { 
+         analogWrite(Pin5, Value5); 
+         delay(30); 
+           } 
+       
+       
+        if (Value5 = 255)                //
+      
+      { 
+       for(Value6 = 0 ; Value6 <= 255; Value6+=5) // fade in (from min to max) Led 2
+       { 
+         analogWrite(Pin6, Value6);           // sets the value (range from 0 to 255) 
+         delay(30);                            // waits for 30 milli seconds to see the dimming effect 
+       } 
+       for(Value6 = 255; Value6 >=0; Value6-=5)   // fade out (from max to min) 
+       { 
+         analogWrite(Pin6, Value6); 
+         delay(30); 
+           } 
+       
+           
+           if (Value6 = 255)                // 
+
+
+ }
   }
 else(){
   setWaveforms( 500, 0 );
