@@ -1,0 +1,11 @@
+ 
+ 
+ 
+ 
+ void setup(){
+ 
+  PIEZOPIN1.play(NOTE_A4);
+  PIEZOPIN2.play(NOTE_A4);
+  while(PIEZOPIN1.isPlaying() || PIEZOPIN2.isPlaying()); 
+  
+  }
