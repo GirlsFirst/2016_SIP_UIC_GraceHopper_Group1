@@ -61,10 +61,10 @@ void loop() {
    else{
     //led turn off
     //lcd turn on
-  PIEZOPIN1.play(NOTE_A4);
+  /**PIEZOPIN1.play(NOTE_A4);
   PIEZOPIN2.play(NOTE_A4);
   while(PIEZOPIN1.isPlaying() || PIEZOPIN2.isPlaying());
-   }
+   }**/
    { 
  val0 = analogRead(analog0Pin);    // read the input pin for button
  Serial.println(val0);             // debug value
