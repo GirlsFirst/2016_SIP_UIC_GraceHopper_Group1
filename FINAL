@@ -65,6 +65,11 @@ PIEZO1=9;
 PIEZO2=10
 
 void setup() {
+ // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+  // Print a message to the LCD.
+  lcd.print("NOJAMM !!!!");
+  
   pinMode(PIEZO1, OUTPUT );    // Arduino Pin  9 = OCR1A
   pinMode(PIEZO2, OUTPUT );   // Arduino Pin 10 = OCR1B
 
