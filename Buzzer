@@ -5,7 +5,8 @@ const int RowTonePin = 13;
 const int ColumnTonePin = 12;
 const int ToneDuration = 100;  //  Play each tone 100 mSec.
 
- 
+Tone PIEZOPIN1;
+Tone PIEZOPIN2;
  
  void setup(){
  
