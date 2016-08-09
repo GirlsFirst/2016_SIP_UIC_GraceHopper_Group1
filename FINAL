@@ -1,4 +1,47 @@
+/*
+  LiquidCrystal Library - Hello World
 
+Demonstrates the use a 16x2 LCD display.  The LiquidCrystal
+library works with all LCD displays that are compatible with the
+Hitachi HD44780 driver. There are many of them out there, and you
+can usually tell them by the 16-pin interface.
+
+This sketch prints "Hello World!" to the LCD
+and shows the time.
+
+  The circuit:
+* LCD RS pin to digital pin 12
+* LCD Enable pin to digital pin 11
+* LCD D4 pin to digital pin 5
+* LCD D5 pin to digital pin 4
+* LCD D6 pin to digital pin 3
+* LCD D7 pin to digital pin 2
+* LCD R/W pin to ground
+* 10K resistor:
+* ends to +5V and ground
+* wiper to LCD VO pin (pin 3)
+
+Library originally added 18 Apr 2008
+by David A. Mellis
+library modified 5 Jul 2009
+by Limor Fried (http://www.ladyada.net)
+example added 9 Jul 2009
+by Tom Igoe
+modified 22 Nov 2010
+by Tom Igoe
+
+This example code is in the public domain.
+
+http://www.arduino.cc/en/Tutorial/LiquidCrystal
+*/
+
+
+// This code demonstrates how to generate two output signals
+// with variable phase shift between them using an AVR Timer 
+
+// The output shows up on Arduino pin 9, 10
+
+// More AVR Timer Tricks at http://josh.com 
 /*
   LiquidCrystal Library - Hello World
 
@@ -42,18 +85,6 @@ http://www.arduino.cc/en/Tutorial/LiquidCrystal
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2); 
 
-//int Pin5 = 5;       // Led 1
-int Pin6 = 6;       // Led 2 
-
-int Value5 = 0;    //Value Led1
-int Value6 = 0;    //Value Led2
-
-int analog0Pin = 0;      // button to start wave
-int val0 = 0;             // variable to store the value read
-
-int threshold = 512;     // threshold for button
-int timer = 100;
-
 
 // This code demonstrates how to generate two output signals
 // with variable phase shift between them using an AVR Timer 
@@ -61,18 +92,19 @@ int timer = 100;
 // The output shows up on Arduino pin 9, 10
 
 // More AVR Timer Tricks at http://josh.com 
-PIEZO1=9;
-PIEZO2=10
+int PIEZO1=9;
+int PIEZO2=10;
+int LED=6;
 
 void setup() {
  // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
   lcd.print("NOJAMM !!!!");
-  
+  Serial.begin(9600);          //  setup serial
   pinMode(PIEZO1, OUTPUT );    // Arduino Pin  9 = OCR1A
   pinMode(PIEZO2, OUTPUT );   // Arduino Pin 10 = OCR1B
-
+  pinMode(LED,OUTPUT);
   // Both outputs in toggle mode  
   TCCR1A = _BV( COM1A0 ) |_BV( COM1B0 );
 
@@ -84,7 +116,7 @@ void setup() {
   TCCR1B = _BV( WGM13) | _BV( WGM12);
 
   PIEZO1= 0;    // First output is the base, it always toggles at 0
-
+}
 // prescaler of 1 will get us 8MHz - 488Hz
 // User a higher prescaler for lower freqncies
 
@@ -114,18 +146,14 @@ int setWaveforms( unsigned long freq , int shift ) {
   PIEZO2= offset_clocks;
 
   // Turn on timer now if is was not already on
-  // Clock source = clkio/1 (no prescaling)
+//  Clock source = clkio/1 (no prescaling)
   // Note: you could use a prescaller here for lower freqnencies
   TCCR1B |= _BV( CS10 ); 
 
-
- pinMode(analog0Pin, INPUT);
- pinMode(Pin5, OUTPUT);   // sets the digital pin as output
- pinMode(Pin6, OUTPUT);   // sets the digital pin as output
- 
- Serial.begin(9600);          //  setup serial
-
 }
+
+
+
 
 // Demo by cycling through some phase shifts at 50Khz  
 
@@ -136,62 +164,14 @@ void loop() {
   // print the number of seconds since reset:
   lcd.print(millis()/1000);
   
-  
-  setWaveforms( 500, 0 );
 
-  delay(1000); 
-
-  setWaveforms( 500, 90 );
-
-  delay(1000); 
-if (button==HIGH){
   setWaveforms( 500, 180 );
-  delay(3000); 
+  delay(1000); 
     // print the number of seconds since reset:
   lcd.print("NOW cancelling out 500 HZ");
-  
-  
-         val0 = analogRead(analog0Pin);    // read the input pin for button
-       Serial.println(val0);             // debug value
-      
-      if (val0 >= threshold)                // 
-      
-      { 
-       for(Value5 = 0 ; Value5 <= 255; Value5+=5) // fade in (from min to max) Led 1
-       { 
-         analogWrite(Pin5, Value5);           // sets the value (range from 0 to 255) 
-         delay(30);                            // waits for 30 milli seconds to see the dimming effect 
-       } 
-       for(Value5 = 255; Value5 >=0; Value5-=5)   // fade out (from max to min) 
-       { 
-         analogWrite(Pin5, Value5); 
-         delay(30); 
-           } 
-       
-       
-        if (Value5 = 255)                //
-      
-      { 
-       for(Value6 = 0 ; Value6 <= 255; Value6+=5) // fade in (from min to max) Led 2
-       { 
-         analogWrite(Pin6, Value6);           // sets the value (range from 0 to 255) 
-         delay(30);                            // waits for 30 milli seconds to see the dimming effect 
-       } 
-       for(Value6 = 255; Value6 >=0; Value6-=5)   // fade out (from max to min) 
-       { 
-         analogWrite(Pin6, Value6); 
-         delay(30); 
-           } 
-       
-           
-           if (Value6 = 255)                // 
-
-
- }
-  }
-else(){
-  setWaveforms( 500, 0 );
-  delay(5000); 
-  }
-
+ 
+  digitalWrite(LED,HIGH);
+  delay(1500);
+  digitalWrite(LED, LOW);
+  delay(1500);
 }
