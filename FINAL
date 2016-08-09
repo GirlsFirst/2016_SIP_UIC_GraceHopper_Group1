@@ -42,7 +42,7 @@ http://www.arduino.cc/en/Tutorial/LiquidCrystal
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2); 
 
-int Pin5 = 5;       // Led 1
+//int Pin5 = 5;       // Led 1
 int Pin6 = 6;       // Led 2 
 
 int Value5 = 0;    //Value Led1
