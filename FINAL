@@ -85,9 +85,6 @@ void setup() {
 
   PIEZO1= 0;    // First output is the base, it always toggles at 0
 
-
-}
-
 // prescaler of 1 will get us 8MHz - 488Hz
 // User a higher prescaler for lower freqncies
 
@@ -120,6 +117,13 @@ int setWaveforms( unsigned long freq , int shift ) {
   // Clock source = clkio/1 (no prescaling)
   // Note: you could use a prescaller here for lower freqnencies
   TCCR1B |= _BV( CS10 ); 
+
+
+ pinMode(analog0Pin, INPUT);
+ pinMode(Pin5, OUTPUT);   // sets the digital pin as output
+ pinMode(Pin6, OUTPUT);   // sets the digital pin as output
+ 
+ Serial.begin(9600);          //  setup serial
 
 }
 
