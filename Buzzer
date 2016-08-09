@@ -1,4 +1,10 @@
- 
+#include <Tone.h>
+
+Tone RowTone, ColumnTone;
+const int RowTonePin = 13;
+const int ColumnTonePin = 12;
+const int ToneDuration = 100;  //  Play each tone 100 mSec.
+
  
  
  
