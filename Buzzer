@@ -91,17 +91,23 @@ int setWaveforms( unsigned long freq , int shift ) {
 
 void loop() {
 
-  setWaveforms( 50000 , 0 );
+  setWaveforms( 500, 0 );
 
   delay(1000); 
 
-  setWaveforms( 50000 , 90 );
+  setWaveforms( 500, 90 );
 
   delay(1000); 
+if (button==HIGH){
+  setWaveforms( 500, 180 );
+  delay(3000); 
+  }
+else(){
+  setWaveforms( 500, 0 );
 
-  setWaveforms( 50000 , 180 );
+  delay(5000); 
 
-  delay(1000); 
 
+}
 
 }
