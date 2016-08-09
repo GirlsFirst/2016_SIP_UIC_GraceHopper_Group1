@@ -1,4 +1,4 @@
-/******#include <Wire.h>
+#include <Wire.h>
 #include <LiquidCrystal.h>
 #include <Tone.h>
 #include <stdint.h>
@@ -64,7 +64,7 @@ void loop() {
   /**PIEZOPIN1.play(NOTE_A4);
   PIEZOPIN2.play(NOTE_A4);
   while(PIEZOPIN1.isPlaying() || PIEZOPIN2.isPlaying());
-   }
+   }***/
    { 
  val0 = analogRead(analog0Pin);    // read the input pin for button
  Serial.println(val0);             // debug value
@@ -114,5 +114,5 @@ if (val0 >= threshold)                //
 }
 }
 }
-****/
+
 
