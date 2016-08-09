@@ -7,11 +7,19 @@ const int ToneDuration = 100;  //  Play each tone 100 mSec.
 
  
  
- 
  void setup(){
  
+  pinMode(10, OUTPUT);
+  pinMode(13, OUTPUT);
   PIEZOPIN1.play(NOTE_A4);
   PIEZOPIN2.play(NOTE_A4);
   while(PIEZOPIN1.isPlaying() || PIEZOPIN2.isPlaying()); 
   
   }
+ 
+ void loop(){
+ 
+ 
+ 
+ 
+ }
