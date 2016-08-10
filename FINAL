@@ -1,8 +1,4 @@
 
-// The output shows up on Arduino pin 9, 10
-
-// More AVR Timer Tricks at http://josh.com 
-/*
   LiquidCrystal Library - Hello World
 
 Demonstrates the use a 16x2 LCD display.  The LiquidCrystal
