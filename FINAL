@@ -1,12 +1,4 @@
 
-
-
-
-
-
-// This code demonstrates how to generate two output signals
-// with variable phase shift between them using an AVR Timer 
-
 // The output shows up on Arduino pin 9, 10
 
 // More AVR Timer Tricks at http://josh.com 
